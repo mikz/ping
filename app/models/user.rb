@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :rememberable, :trackable, :token_authenticatable
 
+  serialize :credentials
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :remember_me
 
@@ -41,6 +43,7 @@ class User < ActiveRecord::Base
       User.create!{ |user|
         user.facebook_user_id = data.id.to_s
         user.image_url = info.image
+        user.credentials = access_token.credentials
       }
     end
   end
@@ -49,13 +52,18 @@ class User < ActiveRecord::Base
     info = access_token.info
     data = access_token.extra.raw_info
     if user = User.where(:twitter_user_id => data.id.to_s).first
+      user.credentials = access_token.credentials
+      user.save!
       user
     else # Create a user with a stub password.
       User.create! { |user|
         user.twitter_user_id = data.id.to_s
         user.image_url = info.image
+        user.credentials = access_token.credentials
       }
     end
   end
 
+  def import_friends!
+  end
 end
