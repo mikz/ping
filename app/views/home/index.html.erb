@@ -14,9 +14,13 @@
 <%= javascript_tag do %>
   $(document).ready(function() {
 
-    var options = { item: 'pong-template', valueNames: ['name', 'city'] }
-    window.pongs = new List('pongs-list', options, '<%= j(@pongs) %>' );
+    var options = { item: 'pong-template', valueNames: ['name', 'city'] };
 
-    window.poll_pongs();
-  }
+    <% if @pongs.empty? %>
+      window.pongs = new List('pongs-list', options );
+    <% else %>
+      window.pongs = new List('pongs-list', options, <%= @pongs.to_json.html_safe %> );
+    <% end  %>
+//    window.poll_pongs();
+  });
 <% end %>
