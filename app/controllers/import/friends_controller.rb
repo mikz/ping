@@ -6,7 +6,7 @@ class Import::FriendsController < ApplicationController
   def create
     @friends = current_user.import_friends!
 
-    respond_with(@friends)
+    redirect_to :back
   end
 
 end

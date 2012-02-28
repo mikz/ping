@@ -1,0 +1,12 @@
+<h1>Your friends</h1>
+<dl>
+<%- @friends.each do |friend| -%>
+  <dt><%= friend.name %></dt>
+  <dd>
+    <ul>
+    <%- friend.pongs.limit(1).each do |ping| %>
+      <li><%= distance_of_time_in_words ping.created_at %></li>
+    <% end %>
+    </ul>
+  </dd>
+<%- end -%>

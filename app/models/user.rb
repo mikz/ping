@@ -78,6 +78,7 @@ class User < ActiveRecord::Base
     data = access_token.extra.raw_info
     if user = User.where(:facebook_user_id => data.id.to_s).first
       user.credentials = access_token.credentials
+      user.name = info.name
       user.save!
       user
     else # Create a user with a stub password.
@@ -85,6 +86,7 @@ class User < ActiveRecord::Base
         user.facebook_user_id = data.id.to_s
         user.image_url = info.image
         user.credentials = access_token.credentials
+        user.name = info.name
       }
     end
   end
@@ -94,6 +96,7 @@ class User < ActiveRecord::Base
     data = access_token.extra.raw_info
     if user = User.where(:twitter_user_id => data.id.to_s).first
       user.credentials = access_token.credentials
+      user.name = info.name
       user.save!
       user
     else # Create a user with a stub password.
@@ -101,6 +104,7 @@ class User < ActiveRecord::Base
         user.twitter_user_id = data.id.to_s
         user.image_url = info.image
         user.credentials = access_token.credentials
+        user.name = info.name
       }
     end
   end
