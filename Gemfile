@@ -41,6 +41,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-openid'
 
+gem 'twitter'
+
 group :development do
   gem 'pry'
   gem 'pry-nav'
