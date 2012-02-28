@@ -15,7 +15,7 @@
   $(document).ready(function() {
 
     var options = { item: 'pong-template', valueNames: ['name', 'city'] }
-    window.pongs = new List('pongs-list', options, '<%= j(@pongs)' %> );
+    window.pongs = new List('pongs-list', options, '<%= j(@pongs) %>' );
 
     window.poll_pongs();
   }
