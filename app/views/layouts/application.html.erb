@@ -11,8 +11,9 @@
     <%= csrf_meta_tags %>
 	</head>
   <body>
-    <%= yield %>
     <%= render 'shared/flash' %>
     <%= render 'shared/login' %>
+
+    <%= yield %>
   </body>
 </html>
