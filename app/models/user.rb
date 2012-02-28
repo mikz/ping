@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     info = access_token.info
     data = access_token.extra.raw_info
-    if user = User.where(:facebook_user_id => data.id).first
+    if user = User.where(:facebook_user_id => data.id.to_s).first
       user
     else # Create a user with a stub password.
       User.create!{ |user|
@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   def self.find_for_twitter_oauth(access_token, signed_in_resource=nil)
     info = access_token.info
     data = access_token.extra.raw_info
-    if user = User.where(:twitter_user_id => data.id).first
+    if user = User.where(:twitter_user_id => data.id.to_s).first
       user
     else # Create a user with a stub password.
       User.create! { |user|
