@@ -12,6 +12,7 @@ task :facebook_import => :environment do
           else
             [nil, nil]
           end
+	  puts "Adding facebook pong to user #{u.id}"
           u.pongs.create :source => 'facebook', :latitude => coord.first, :longitude => coord.last, :facebook_id => event["id"].to_s
         end
       end
