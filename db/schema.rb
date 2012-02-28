@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228124142) do
+ActiveRecord::Schema.define(:version => 20120228142218) do
 
   create_table "pings", :force => true do |t|
     t.integer  "user_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20120228124142) do
     t.string   "facebook_user_id"
     t.string   "image_url"
     t.string   "authentication_token"
+    t.text     "credentials"
   end
 
 end
