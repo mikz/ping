@@ -53,10 +53,10 @@ class User < ActiveRecord::Base
     client = Twitter::Client.new
     all_friends = get_twitter_friends_with_cursor(-1,[],client)
     get_twitter_users(all_friends,client).map do |friend|
-      user = User.where(:twitter_user_id => friend['id']).first
+      user = User.where(:twitter_user_id => friend['id'].to_s).first
       unless user
         user = User.create! { |user|
-          user.twitter_user_id = friend['id']
+          user.twitter_user_id = friend['id'].to_s
           user.name = friend['name']
         }
       end
