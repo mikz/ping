@@ -7,6 +7,7 @@ window.poll_pongs = ->
 
       _.each response.pongs, (pong) ->
         item = window.pongs.add
+          id: pong.id
           name: pong.user.name || "Anon"
           city: '&hellip;'
           timestamp: pong.created_at
@@ -17,8 +18,8 @@ window.poll_pongs = ->
         time = item.find(".timestamp")
         time.text($.timeago(time.text()))
 
-
       window.setTimeout(poll_pongs, 2000)
+      window.pongs.sort 'id', { asc: false }
 
     error: ->
       console.info "You lost a ping pong game."

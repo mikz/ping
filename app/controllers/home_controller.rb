@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @pongs =  [ { name: 'Someone', created_at: 'Today' }, { name: 'You', created_at: 'Yesterday' } ]
-#    @pongs = Pong.all
+    @pongs = if current_user
+               Pong.where(:user_id => current_user.friend_ids)
+             else
+               Pong.scoped({}).limit(20)
+             end
   end
 end

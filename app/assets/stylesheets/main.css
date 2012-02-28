@@ -110,7 +110,30 @@ p {
 	-moz-border-radius: 150px;
 	-webkit-border-radius: 150px;
 	border-radius: 150px;
-	border: 6px solid #f8f8f8;
+	-moz-box-shadow: inset 0 -1px 6px rgba(92, 0, 0, .4);
+        -webkit-box-shadow: inset 0 -1px 6px rgba(92, 0, 0, .4);
+        box-shadow: inset 0 -1px 6px rgba(92, 0, 0, .4);
+}
+
+.pingButtonDiv:HOVER {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#ba1c1c), to(#ba1c1c));
+        background-image: -webkit-linear-gradient(top, #ba1c1c, #7f0e0e);
+        background-image:    -moz-linear-gradient(top, #ba1c1c, #7f0e0e);
+        background-image:     -ms-linear-gradient(top, #ba1c1c, #7f0e0e);
+        background-image:      -o-linear-gradient(top, #ba1c1c, #7f0e0e);
+        background-image:         linear-gradient(top, #ba1c1c, #7f0e0e);
+}
+
+.pingButtonDiv:ACTIVE {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#8f1616), to(#a71313));
+        background-image: -webkit-linear-gradient(top, #8f1616, #a71313);
+        background-image:    -moz-linear-gradient(top, #8f1616, #a71313);
+        background-image:     -ms-linear-gradient(top, #8f1616, #a71313);
+        background-image:      -o-linear-gradient(top, #8f1616, #a71313);
+        background-image:         linear-gradient(top, #8f1616, #a71313);
+        -moz-box-shadow: inset 0 4px 6px rgba(92, 0, 0, .4);
+        -webkit-box-shadow: inset 0 4px 6px rgba(92, 0, 0, .4);
+        box-shadow: inset 0 4px 6px rgba(92, 0, 0, .4);
 }
 
 .height1 {
