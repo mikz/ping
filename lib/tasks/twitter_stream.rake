@@ -8,7 +8,7 @@ task :twitter_stream => :environment do
     config.parser   = :yajl
   end
 
-  TweetStream::Client.new.follow(User.all.map{|u| u.twitter_user_id}) do |status|
+  TweetStream::Client.new.follow(User.all.map{|u| u.twitter_user_id}.compact) do |status|
     u = User.find_by_id(status[:user][:id_str])
     next if u.nil?
     coord = if status[:place] 
