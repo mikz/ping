@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   serialize :credentials
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :remember_me
+  attr_accessible :name, :remember_me
 
   has_many :pongs
 
@@ -22,9 +22,12 @@ class User < ActiveRecord::Base
   def import_from_facebook!
     api = Koala::Facebook::API.new(credentials['token'])
     api.get_connections("me", "friends").map do |friend|
-      user = User.where(:facebook_user_id => friend['id'])
+      user = User.where(:facebook_user_id => friend['id']).first
       unless user
-        user = User.create(:facebook_user_id => friend['id'], :name => friend['name'])
+        user = User.create! { |user|
+          user.facebook_user_id = friend['id']
+          user.name = friend['name']
+        }
       end
       user
     end
