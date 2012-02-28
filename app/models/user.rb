@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
 
   has_many :pongs
 
+  has_many :friendships, :foreign_key => :owner_id
+  has_many :friends, :through => :friendships
+
+  def make_friend!(friend)
+    friendships.create! :owner => self, :friend => friend
+    friendships.create! :owner => friend, :friend => self
+  end
+
   def import_friends!
     case
     when facebook?
