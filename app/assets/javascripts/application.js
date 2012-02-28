@@ -16,4 +16,5 @@
 //= require backbone
 //= require list.min
 //= require mustache
+//= require jquery.timeago
 //= require_tree .

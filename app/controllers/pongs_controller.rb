@@ -2,8 +2,20 @@ class PongsController < ApplicationController
   respond_to :json
 
   def index
-    # Pong.limit(100)
-    all = [ { name: 'Me' }, { name: 'You' } ]
+    scope = case params[:scope].try(:to_sym)
+    when :friends
+      Pong.where(:user_id => current_user.friend_ids)
+    else
+      Pong.scoped({})
+    end
+
+    if last = params[:last_poll].try(:to_time)
+      scope = scope.where(["created_at >= ?", last])
+    else
+      scope = scope.limit(10)
+    end
+
+    all = scope.all
 
     render json: { last_poll: Time.now, pongs: all }
   end
