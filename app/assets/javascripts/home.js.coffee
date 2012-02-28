@@ -22,3 +22,14 @@ window.poll_pongs = ->
 
     error: ->
       console.info "You lost a ping pong game."
+
+$ ->
+  $("#worldButton").click ->
+    window.scope = null
+    window.last_poll = null
+    window.pongs.clear()
+
+  $("#friendsButton").click ->
+    window.scope = "friends"
+    window.last_poll = null
+    window.pongs.clear()

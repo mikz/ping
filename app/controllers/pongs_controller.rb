@@ -2,16 +2,21 @@ class PongsController < ApplicationController
   respond_to :json
 
   def index
-    scope = case params[:scope].try(:to_sym)
+    scope = case params[:scope].presence.try(:to_sym)
     when :friends
       Pong.where(:user_id => current_user.friend_ids)
     else
       Pong.scoped({})
     end
 
-    if last = params[:last_poll].try(:to_time)
-      scope = scope.where(["created_at >= ?", last])
-    else
+    begin
+      if last = params[:last_poll].presence.try(:to_time)
+        scope = scope.where(["created_at >= ?", last])
+      else
+        scope = scope.limit(10)
+      end
+
+    rescue ArgumentError
       scope = scope.limit(10)
     end
 
