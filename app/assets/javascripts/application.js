@@ -17,3 +17,8 @@
 //= require list.min
 //= require mustache
 //= require_tree .
+
+
+$('#pingButtonDiv').click(function() {
+alert('yeah');
+});
