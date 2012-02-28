@@ -171,6 +171,11 @@ GEM
       daemons (~> 1.1)
       multi_json (>= 1.0)
       twitter-stream (= 0.1.14)
+    twitter (2.1.0)
+      activesupport (>= 2.3.9, < 4)
+      faraday (~> 0.7)
+      multi_json (~> 1.0)
+      simple_oauth (~> 0.1)
     twitter-stream (0.1.14)
       eventmachine (>= 0.12.8)
       http_parser.rb (~> 0.5.1)
@@ -206,5 +211,6 @@ DEPENDENCIES
   therubyracer
   thin
   tweetstream
+  twitter
   uglifier (>= 1.0.3)
   yajl-ruby
