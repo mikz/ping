@@ -35,6 +35,8 @@ group :development do
   gem 'pry-nav'
 end
 
+gem 'tweetstream'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
