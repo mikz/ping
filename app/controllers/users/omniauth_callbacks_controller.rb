@@ -11,6 +11,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = I18n.t 'devise.omniauth_callbacks.failure', :kind => 'Twitter', :reason => 'User not found'
       redirect_to new_user_session_path
     end
+  rescue Exception => e
+    Airbrake.notify(e)
+    raise
   end
 
   def facebook
