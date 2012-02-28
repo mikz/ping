@@ -6,10 +6,10 @@ body {
 
 @font-face {
 	font-family: callunaSansReg;
-	src: url('./fonts/callunaSansReg.eot?#iefix')
-		format('embedded-opentype'), url('./fonts/callunaSansReg.woff')
-		format('woff'), url('./fonts/callunaSansReg.ttf') format('truetype'),
-		url('./fonts/callunaSansReg.svg#callunaSansReg') format('svg');
+	src: url('/fonts/callunaSansReg.eot?#iefix')
+		format('embedded-opentype'), url('/fonts/callunaSansReg.woff')
+		format('woff'), url('/fonts/callunaSansReg.ttf') format('truetype'),
+		url('/fonts/callunaSansReg.svg#callunaSansReg') format('svg');
 }
 
 h1{
