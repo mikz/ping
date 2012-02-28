@@ -1,8 +1,22 @@
-<ul id="pongs">
-  <li>A</li>
-  <li>B</li>
-  <li>C</li>
-  <li>D</li>
-</ul>
+<!-- Pong template -->
+<div style="display:none;">
+    <li id="pong-template">
+       <h3 class="name"></h3>
+       <p class="city"></p>
+    </li>
+</div>
 
+<div id="pongs-list">
+    <ul class="list">
+    </ul>
+</div>
 
+<%= javascript_tag do %>
+  $(document).ready(function() {
+
+    var options = { item: 'pong-template', valueNames: ['name', 'city'] }
+    window.pongs = new List('pongs-list', options, '<%= j(@pongs) %>' );
+
+    window.poll_pongs();
+  }
+<% end %>
