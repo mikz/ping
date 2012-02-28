@@ -1,15 +1,31 @@
 <%= render 'button' %>
 
+<div id='selectors'>
+  <span id='worldButton' class='selector s1'>
+    <h2>World</h2>
+  </span>
+  <span id='friendsButton' class='selector s2'>
+    <h2>Friends</h2>
+  </span>
+  <span id='search'>
+    <p>Search</p>
+  </span>
+</div>
+
 <!-- Pong template -->
 <div style="display:none;">
-    <li id="pong-template">
-       <h3 class="name"></h3>
-       <p class="city"></p>
+    <li id="pong-template" class="user">
+			<div class='userPic'></div>
+			<div class='info'>
+				<p class="name"></p>
+				<p class="city"></p>
+				<p class="timestamp"></p>
+      </div>
     </li>
 </div>
 
 <div id="pongs-list">
-    <ul class="list">
+    <ul class="list" id="users">
     </ul>
 </div>
 
