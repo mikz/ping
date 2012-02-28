@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228144037) do
+ActiveRecord::Schema.define(:version => 20120228155915) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "owner_id",   :null => false
@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(:version => 20120228144037) do
     t.string   "latitude"
     t.string   "longitude"
     t.string   "source"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "facebook_id"
   end
 
+  add_index "pings", ["facebook_id"], :name => "index_pings_on_facebook_id"
   add_index "pings", ["user_id"], :name => "index_pings_on_user_id"
 
   create_table "users", :force => true do |t|
