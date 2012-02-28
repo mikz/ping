@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
       user
     else # Create a user with a stub password.
       User.create!{ |user|
-        user.facebook_user_id = data.id
+        user.facebook_user_id = data.id.to_s
         user.image_url = info.image
       }
     end
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
       user
     else # Create a user with a stub password.
       User.create! { |user|
-        user.twitter_user_id = data.id
+        user.twitter_user_id = data.id.to_s
         user.image_url = info.image
       }
     end
