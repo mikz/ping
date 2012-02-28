@@ -14,4 +14,7 @@
 /log/*.log
 /tmp
 
-/config/database.xml
+/config/database.yml
+
+# vim swap files
+.*.swp
