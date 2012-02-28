@@ -16,7 +16,7 @@ task :twitter_stream => :environment do
     else
       [nil, nil]
     end
-    u.pings.create(:latitude => coord.first, :longitude => coord.last, :source => 'twitter')
+    u.pongs.create(:latitude => coord.first, :longitude => coord.last, :source => 'twitter')
   end
 end
 
