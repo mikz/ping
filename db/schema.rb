@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228142218) do
+ActiveRecord::Schema.define(:version => 20120228142744) do
 
   create_table "pings", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120228142218) do
     t.string   "image_url"
     t.string   "authentication_token"
     t.text     "credentials"
+    t.string   "name"
   end
 
 end

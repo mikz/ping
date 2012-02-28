@@ -20,9 +20,13 @@ class User < ActiveRecord::Base
   end
 
   def import_from_facebook!
-    api = Koala::Facebook::API.new(credentials[:token])
-    api.get_connections("me", "friends").each do |friend|
+    api = Koala::Facebook::API.new(credentials['token'])
+    api.get_connections("me", "friends").map do |friend|
       user = User.where(:facebook_user_id => friend['id'])
+      unless user
+        user = User.create(:facebook_user_id => friend['id'], :name => friend['name'])
+      end
+      user
     end
   end
 
@@ -38,6 +42,8 @@ class User < ActiveRecord::Base
     info = access_token.info
     data = access_token.extra.raw_info
     if user = User.where(:facebook_user_id => data.id.to_s).first
+      user.credentials = access_token.credentials
+      user.save!
       user
     else # Create a user with a stub password.
       User.create!{ |user|
@@ -62,8 +68,5 @@ class User < ActiveRecord::Base
         user.credentials = access_token.credentials
       }
     end
-  end
-
-  def import_friends!
   end
 end
