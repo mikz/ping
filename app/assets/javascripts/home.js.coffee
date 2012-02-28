@@ -7,10 +7,12 @@ window.poll_pongs = ->
 
       _.each response.pongs, (pong) ->
         window.pongs.add
+          name: pong.id
           name: pong.name
           city: 'Prague'
 
       window.setTimeout(poll_pongs, 2000)
+      window.pongs.sort 'id', { asc: false }
 
     error: ->
       console.info "You lost a ping pong game."
