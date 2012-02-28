@@ -19,6 +19,6 @@
 //= require_tree .
 
 
-$('#pingButtonDiv').click(function() {
+$('#ping-button').on('click', function() {
 alert('yeah');
 });
