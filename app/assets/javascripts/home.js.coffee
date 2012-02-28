@@ -3,12 +3,14 @@ window.poll_pongs = ->
     url: '/pongs'
     data: { last_poll: window.last_poll }
     success: (response) ->
-      window.last_poll = response.created_at
+      window.last_poll = response.last_poll
 
       _.each response.pongs, (pong) ->
         window.pongs.add
           name: pong.name
           city: 'Prague'
+
+        window.pongs.sort()
 
       window.setTimeout(poll_pongs, 2000);
 
