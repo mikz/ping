@@ -18,7 +18,8 @@
 //= require mustache
 //= require_tree .
 
-
+$(function() {
 $('#ping-button').on('click', function() {
-alert('yeah');
+jQuery.post('/pongs');
+});
 });
