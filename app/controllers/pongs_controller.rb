@@ -15,7 +15,7 @@ class PongsController < ApplicationController
       scope = scope.limit(10)
     end
 
-    all = scope.all
+    all = scope.all.as_json(:include => {:user => {:only => [:name, :image_url]}})
 
     render json: { last_poll: Time.now, pongs: all }
   end
