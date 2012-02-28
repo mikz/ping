@@ -24,7 +24,12 @@ end
 gem 'jquery-rails'
 
 gem 'devise'
+
 gem 'omniauth'
+
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-openid'
 
 group :development do
   gem 'pry'
