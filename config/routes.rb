@@ -1,4 +1,6 @@
 Ping::Application.routes.draw do
+  resources :pongs
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   namespace :import do
