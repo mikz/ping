@@ -17,5 +17,3 @@
 //= require list.min
 //= require mustache
 //= require_tree .
-
-
