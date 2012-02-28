@@ -16,7 +16,7 @@ task :twitter_stream => :environment do
     end
     client.follow(User.all.map{|u| u.twitter_user_id}.compact) do |status|
       puts status.inspect
-      u = User.find_by_id(status[:user][:id_str])
+      u = User.find_by_twitter_user_id(status[:user][:id_str])
       next if u.nil?
       coord = if status[:place] 
         geo_center(status[:place][:bounding_box][:coordinates])
