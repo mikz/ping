@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
   has_many :friendships, :foreign_key => :owner_id
   has_many :friends, :through => :friendships
 
-  def make_friend!(friend)
-    friendships.create! :owner => self, :friend => friend
-    friendships.create! :owner => friend, :friend => self
+  def make_friend(friend)
+    friendships.create :owner => self, :friend => friend
+    friendships.create :owner => friend, :friend => self
   end
 
   def import_friends!
@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
           user.name = friend['name']
         }
       end
+      make_friend(user)
       user
     end
   end
