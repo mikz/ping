@@ -1,11 +1,16 @@
 window.poll_pongs = ->
   jQuery.ajax
     url: '/pongs'
-    data: { last_poll: '1212112'}
-    success: (pongs) ->
-      window.pongs.add
-        name: 'lsdjf'
-        city: 'sldjfldsfjlsd'
+    data: { last_poll: window.last_poll }
+    success: (response) ->
+      window.last_poll = response.created_at
+
+      _.each response.pongs, (pong) ->
+        window.pongs.add
+          name: pong.name
+          city: 'Prague'
+
+      window.setTimeout(poll_pongs, 2000);
 
     error: ->
       console.info "You lost a ping pong game."

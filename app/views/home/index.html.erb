@@ -15,7 +15,6 @@
 
 <%= javascript_tag do %>
   $(document).ready(function() {
-
     var options = { item: 'pong-template', valueNames: ['name', 'city'] };
 
     <% if @pongs.empty? %>
@@ -23,6 +22,7 @@
     <% else %>
       window.pongs = new List('pongs-list', options, <%= @pongs.to_json.html_safe %> );
     <% end  %>
-//    window.poll_pongs();
+
+    window.poll_pongs();
   });
 <% end %>

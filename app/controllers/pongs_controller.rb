@@ -2,9 +2,10 @@ class PongsController < ApplicationController
   respond_to :json
 
   def index
-    @pongs = Pong.limit(100)
+    # Pong.limit(100)
+    all = [ { name: 'Me' }, { name: 'You' } ]
 
-    respond_with(@pongs)
+    render json: { last_poll: Time.now, pongs: all }
   end
 
   def create
@@ -15,5 +16,5 @@ class PongsController < ApplicationController
     @pong = current_user.pongs.create attrs
 
     respond_with(@pong)
-  end	
+  end
 end
