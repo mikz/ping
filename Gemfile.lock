@@ -175,6 +175,7 @@ GEM
       multi_json (>= 1.0.2)
     warden (1.1.1)
       rack (>= 1.0)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -198,3 +199,4 @@ DEPENDENCIES
   thin
   tweetstream
   uglifier (>= 1.0.3)
+  yajl-ruby

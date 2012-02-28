@@ -43,6 +43,7 @@ group :development do
 end
 
 gem 'tweetstream'
+gem 'yajl-ruby'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
