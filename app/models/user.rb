@@ -8,6 +8,30 @@ class User < ActiveRecord::Base
 
   has_many :pongs
 
+  def import_friends!
+    case
+    when facebook?
+      import_from_facebook!
+    when twitter?
+      import_from_twitter!
+    end
+  end
+
+  def import_from_facebook!
+    api = Koala::Facebook::API.new(credentials[:token])
+    api.get_connections("me", "friends").each do |friend|
+      user = User.where(:facebook_user_id => friend['id'])
+    end
+  end
+
+  def facebook?
+    facebook_user_id?
+  end
+
+  def twitter?
+    twitter_user_id?
+  end
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     info = access_token.info
     data = access_token.extra.raw_info
