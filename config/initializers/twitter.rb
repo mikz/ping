@@ -1,2 +1,4 @@
 TWITTER_USERNAME = "PingerNetwork"
 TWITTER_PASSWORD = "awesomepassword"
+TWITTER_TOKEN = "L7CC4DfCn4DcP7DDIznK1w"
+TWITTER_SECRET = "9jn7zsWnrKrAPvk5hgXV0l9wMqrXEfP1NSt1z0Swiiw"

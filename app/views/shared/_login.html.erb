@@ -1,0 +1,7 @@
+<% if current_user %>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <%= link_to "Import your friends!", import_friends_path, :method => :post %>
+<%else %>
+  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+  <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
+<% end %>

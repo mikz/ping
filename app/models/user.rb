@@ -42,6 +42,29 @@ class User < ActiveRecord::Base
     end
   end
 
+  def import_from_twitter!
+    Twitter.configure do |config|
+      config.consumer_key = TWITTER_TOKEN
+      config.consumer_secret = TWITTER_SECRET
+      config.oauth_token = self.credentials[:token]
+      config.oauth_token_secret = self.credentials[:secret]
+    end
+
+    client = Twitter::Client.new
+    all_friends = get_twitter_friends_with_cursor(-1,[],client)
+    get_twitter_users(all_friends,client).map do |friend|
+      user = User.where(:twitter_user_id => friend['id'].to_s).first
+      unless user
+        user = User.create! { |user|
+          user.twitter_user_id = friend['id'].to_s
+          user.name = friend['name']
+        }
+      end
+      make_friend(user)
+      user
+    end
+  end
+
   def facebook?
     facebook_user_id?
   end
@@ -80,5 +103,26 @@ class User < ActiveRecord::Base
         user.credentials = access_token.credentials
       }
     end
+  end
+
+  private
+
+  def get_twitter_friends_with_cursor(cursor, list, client)
+    # Base case
+    if cursor == 0
+      return list
+    else
+      hashie = client.friend_ids(:cursor => cursor)
+      hashie.ids.each {|u| list << u } # Concat users to list
+      get_twitter_friends_with_cursor(hashie.next_cursor,list,client) # Recursive step using the next cursor
+    end
+  end
+
+  def get_twitter_users(user_ids, client)
+    users = []
+    user_ids.in_groups_of(100).each do |group|
+      users.concat(client.friendships(group))
+    end
+    users
   end
 end
