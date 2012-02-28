@@ -8,15 +8,23 @@ task :twitter_stream => :environment do
     config.parser   = :yajl
   end
 
-  TweetStream::Client.new.follow(User.all.map{|u| u.twitter_user_id}.compact) do |status|
-    u = User.find_by_id(status[:user][:id_str])
-    next if u.nil?
-    coord = if status[:place] 
-      geo_center(status[:place][:bounding_box][:coordinates])
-    else
-      [nil, nil]
+  while true
+    client = TweetStream::Client.new
+    client.on_interval(60) do
+      client.stop
+      return
     end
-    u.pongs.create(:latitude => coord.first, :longitude => coord.last, :source => 'twitter')
+    client.follow(User.all.map{|u| u.twitter_user_id}.compact) do |status|
+      puts status.inspect
+      u = User.find_by_id(status[:user][:id_str])
+      next if u.nil?
+      coord = if status[:place] 
+        geo_center(status[:place][:bounding_box][:coordinates])
+      else
+        [nil, nil]
+      end
+      u.pongs.create(:latitude => coord.first, :longitude => coord.last, :source => 'twitter')
+    end
   end
 end
 
